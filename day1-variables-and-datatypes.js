@@ -15,6 +15,7 @@ let stringType = "JavaScript";
 let booleanType = false;
 let objectType = { name: "John", age: 30 };
 let arrayType = [1, 2, 3, 4, 5];
+let arrayType1 = [1, 2, 3, 4, 5];
 
 console.log(typeof numberType); // Output: number
 console.log(typeof stringType); // Output: string
