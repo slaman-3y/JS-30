@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 10: Event Handling</title>
+  <style>
+    .toggleVisibility {
+      display: none;
+    }
+    .highlight {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <!-- Task 1: Add a click event listener to a button that changes the text content of a paragraph -->
+  <button id="clickButton">Click Me</button>
+  <p id="clickParagraph">This is a paragraph.</p>
+
+  <!-- Task 2: Add a double-click event listener to an image that toggles its visibility -->
+  <img id="dblClickImage" src="example.jpg" alt="Example Image" width="200">
+
+  <!-- Task 3: Add a mouseover event listener to an element that changes its background color -->
+  <!-- Task 4: Add a mouseout event listener to an element that resets its background color -->
+  <div id="mouseEventDiv" style="width: 200px; height: 100px; background-color: lightgray;">Hover over me</div>
+
+  <!-- Task 5: Add a keydown event listener to an input field that logs the key pressed to the console -->
+  <!-- Task 6: Add a keyup event listener to an input field that displays the current value in a paragraph -->
+  <input type="text" id="keyEventInput" placeholder="Type something...">
+  <p id="keyEventParagraph"></p>
+
+  <!-- Task 7: Add a submit event listener to a form that prevents the default submission and logs the form data to the console -->
+  <form id="myForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- Task 8: Add a change event listener to a select dropdown that displays the selected value in a paragraph -->
+  <select id="mySelect">
+    <option value="Option 1">Option 1</option>
+    <option value="Option 2">Option 2</option>
+    <option value="Option 3">Option 3</option>
+  </select>
+  <p id="selectParagraph"></p>
+
+  <!-- Task 9: Add a click event listener to a list that logs the text content of the clicked list item using event delegation -->
+  <ul id="myList">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+  </ul>
+
+  <!-- Task 10: Add an event listener to a parent element that listens for events from dynamically added child elements -->
+  <div id="parentDiv">
+    <button id="addChildButton">Add Child Element</button>
+  </div>
+
+  <script>
+    // Task 1: Add a click event listener to a button that changes the text content of a paragraph
+    document.getElementById('clickButton').addEventListener('click', () => {
+      document.getElementById('clickParagraph').textContent = 'Text content has been changed!';
+    });
+
+    // Task 2: Add a double-click event listener to an image that toggles its visibility
+    document.getElementById('dblClickImage').addEventListener('dblclick', (event) => {
+      event.target.classList.toggle('toggleVisibility');
+    });
+
+    // Task 3: Add a mouseover event listener to an element that changes its background color
+    // Task 4: Add a mouseout event listener to an element that resets its background color
+    let mouseEventDiv = document.getElementById('mouseEventDiv');
+    mouseEventDiv.addEventListener('mouseover', () => {
+      mouseEventDiv.style.backgroundColor = 'lightblue';
+    });
+    mouseEventDiv.addEventListener('mouseout', () => {
+      mouseEventDiv.style.backgroundColor = 'lightgray';
+    });
+
+    // Task 5: Add a keydown event listener to an input field that logs the key pressed to the console
+    // Task 6: Add a keyup event listener to an input field that displays the current value in a paragraph
+    let keyEventInput = document.getElementById('keyEventInput');
+    keyEventInput.addEventListener('keydown', (event) => {
+      console.log(`Key pressed: ${event.key}`);
+    });
+    keyEventInput.addEventListener('keyup', () => {
+      document.getElementById('keyEventParagraph').textContent = `Current value: ${keyEventInput.value}`;
+    });
+
+    // Task 7: Add a submit event listener to a form that prevents the default submission and logs the form data to the console
+    document.getElementById('myForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      let formData = new FormData(event.target);
+      let data = {};
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+      console.log('Form data:', data);
+    });
+
+    // Task 8: Add a change event listener to a select dropdown that displays the selected value in a paragraph
+    document.getElementById('mySelect').addEventListener('change', (event) => {
+      document.getElementById('selectParagraph').textContent = `Selected value: ${event.target.value}`;
+    });
+
+    // Task 9: Add a click event listener to a list that logs the text content of the clicked list item using event delegation
+    document.getElementById('myList').addEventListener('click', (event) => {
+      if (event.target.tagName === 'LI') {
+        console.log(`Clicked item: ${event.target.textContent}`);
+      }
+    });
+
+    // Task 10: Add an event listener to a parent element that listens for events from dynamically added child elements
+    document.getElementById('addChildButton').addEventListener('click', () => {
+      let newButton = document.createElement('button');
+      newButton.textContent = 'Dynamic Button';
+      document.getElementById('parentDiv').appendChild(newButton);
+    });
+
+    document.getElementById('parentDiv').addEventListener('click', (event) => {
+      if (event.target.tagName === 'BUTTON' && event.target !== document.getElementById('addChildButton')) {
+        alert('Dynamic Button Clicked!');
+      }
+    });
+  </script>
+</body>
+</html>

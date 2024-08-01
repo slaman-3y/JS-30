@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 9: DOM Manipulation</title>
+  <style>
+    .myClass {
+      padding: 10px;
+      border: 1px solid #000;
+    }
+    .highlight {
+      background-color: yellow;
+    }
+    .borderChange {
+      width: 100px;
+      height: 100px;
+      border: 2px solid black;
+    }
+  </style>
+</head>
+<body>
+  <!-- Task 1: Select an HTML element by its ID and change its text content -->
+  <p id="myParagraph">This is a paragraph.</p>
+
+  <!-- Task 2: Select an HTML element by its class and change its background color -->
+  <div class="myClass">This is a div with a class.</div>
+
+  <!-- Task 3: Create a new div element with some text content and append it to the body -->
+  <!-- This will be done through JavaScript -->
+
+  <!-- Task 4: Create a new li element and add it to an existing ul list -->
+  <ul id="myList">
+    <li>Item 1</li>
+    <li>Item 2</li>
+  </ul>
+
+  <!-- Task 5: Select an HTML element and remove it from the DOM -->
+  <div id="removeMe">Remove this div.</div>
+
+  <!-- Task 6: Remove the last child of a specific HTML element -->
+  <!-- This will be done through JavaScript -->
+
+  <!-- Task 7: Select an HTML element and change one of its attributes (e.g., src of an img tag) -->
+  <img id="myImage" src="old_image.jpg" alt="Old Image">
+
+  <!-- Task 8: Add and remove a CSS class to/from an HTML element -->
+  <p id="myParagraph2">This is another paragraph.</p>
+
+  <!-- Task 9: Add a click event listener to a button that changes the text content of a paragraph -->
+  <button id="myButton">Click me</button>
+  <p id="myParagraph3">This is a paragraph.</p>
+
+  <!-- Task 10: Add a mouseover event listener to an element that changes its border color -->
+  <div class="borderChange"></div>
+
+  <script>
+    // Task 1: Select an HTML element by its ID and change its text content
+    document.getElementById('myParagraph').textContent = 'Text content has been changed!';
+
+    // Task 2: Select an HTML element by its class and change its background color
+    document.querySelector('.myClass').style.backgroundColor = 'lightblue';
+
+    // Task 3: Create a new div element with some text content and append it to the body
+    let newDiv = document.createElement('div');
+    newDiv.textContent = 'This is a new div element.';
+    document.body.appendChild(newDiv);
+
+    // Task 4: Create a new li element and add it to an existing ul list
+    let newLi = document.createElement('li');
+    newLi.textContent = 'Item 3';
+    document.getElementById('myList').appendChild(newLi);
+
+    // Task 5: Select an HTML element and remove it from the DOM
+    let elementToRemove = document.getElementById('removeMe');
+    elementToRemove.remove();
+
+    // Task 6: Remove the last child of a specific HTML element
+    let list = document.getElementById('myList');
+    list.removeChild(list.lastElementChild);
+
+    // Task 7: Select an HTML element and change one of its attributes (e.g., src of an img tag)
+    document.getElementById('myImage').src = 'new_image.jpg';
+
+    // Task 8: Add and remove a CSS class to/from an HTML element
+    let paragraph = document.getElementById('myParagraph2');
+    paragraph.classList.add('highlight');
+    setTimeout(() => {
+      paragraph.classList.remove('highlight');
+    }, 2000);
+
+    // Task 9: Add a click event listener to a button that changes the text content of a paragraph
+    document.getElementById('myButton').addEventListener('click', () => {
+      document.getElementById('myParagraph3').textContent = 'The text has been changed!';
+    });
+
+    // Task 10: Add a mouseover event listener to an element that changes its border color
+    document.querySelector('.borderChange').addEventListener('mouseover', function() {
+      this.style.borderColor = 'red';
+    });
+  </script>
+</body>
+</html>
